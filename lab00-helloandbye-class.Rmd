@@ -23,11 +23,12 @@ options(
 ```
 
 
-##lab report 9.13
-##It has 1846 rows,3 columns and 3 variables
 ```{r datasauRus}
 library(tidyverse) 
 library(datasauRus)
+
+?datasaurus_dozen
+
 datasaurus_dozen%>%count(dataset)%>%print(13)
 
 
