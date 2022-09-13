@@ -1,0 +1,69 @@
+---
+title: "Lab 01 - Hello Class!"
+date: "2016-09-07 (updated `r Sys.Date()` by Hz)"
+author: "Hongzhe Xu"
+output: 
+  tufte::tufte_html:
+    tufte_variant: "envisioned"
+    highlight: pygments
+    css: lab.css
+    link-citations: yes
+    self_contained: FALSE
+  html_document:
+    self_contained: FALSE
+---
+
+```{r include=FALSE}
+library(tidyverse)   #tufte
+library(datasauRus)
+options(
+  htmltools.dir.version = FALSE, # for blogdown
+  show.signif.stars = FALSE     # for regression output
+  )
+```
+
+
+##lab report 9.13
+##It has 1846 rows,3 columns and 3 variables
+```{r datasauRus}
+library(tidyverse) 
+library(datasauRus)
+datasaurus_dozen%>%count(dataset)%>%print(13)
+
+
+dino_data = datasaurus_dozen %>%
+  filter(dataset == "dino")
+ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
+  geom_point()
+dino_data %>%
+  summarize(r = cor(x, y))
+
+
+dino_data = datasaurus_dozen %>%
+  filter(dataset == "star")
+ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
+  geom_point()
+dino_data %>%
+  summarize(r = cor(x, y))
+
+
+dino_data = datasaurus_dozen %>%
+  filter(dataset == "circle")
+ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
+  geom_point()
+dino_data %>%
+  summarize(r = cor(x, y))
+
+
+ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset))+
+  geom_point()+
+  facet_wrap(~ dataset, ncol = 3) +
+  theme(legend.position = "none")
+datasaurus_dozen %>%
+  group_by(dataset) %>%
+  summarize(r = cor(x, y)) %>%
+  print(13)
+
+```
+
+
